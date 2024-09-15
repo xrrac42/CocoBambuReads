@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BooksApiResponse } from '../../core/models/book.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  searchBooks(query: string): Observable<any> {
+  searchBooks(query: string): Observable<BooksApiResponse> {
     const url = `${this.apiUrl}?q=${query}`;
-    return this.http.get<any>(url);
+    return this.http.get<BooksApiResponse>(url);
   }
 }
