@@ -5,6 +5,9 @@ export interface VolumeInfo {
     imageLinks?: {
       thumbnail: string;
     };
+    categories?: string[];
+    publishedDate?: string;
+    image?: string;
   }
   
   export interface Book {

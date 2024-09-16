@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Book } from '../../core/models/book.model';
 import { BooksApiResponse } from '../../core/models/book.model';
 
 @Injectable({
@@ -15,5 +16,9 @@ export class BookService {
   searchBooks(query: string): Observable<BooksApiResponse> {
     const url = `${this.apiUrl}?q=${query}`;
     return this.http.get<BooksApiResponse>(url);
+  }
+  getBookById(id: string): Observable<Book> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Book>(url);
   }
 }

@@ -1,19 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BookService } from '../../../app/services/book.service';
 import { Book } from '../../../core/models/book.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs/operators';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })
-export class ContentComponent {
-  constructor(private bookService: BookService) { }
+export class ContentComponent implements OnInit { 
+  constructor(private bookService: BookService, @Inject(ActivatedRoute) private route: ActivatedRoute ) {
+    this.route.paramMap.subscribe((params:any)=> {
+      this.id = params.get('id');});
+   }
+
+   ngOnInit(): void {
+  }
+  id: string | null = '';
   books: Book[] = [];
   query: string = '';
 
