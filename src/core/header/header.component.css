@@ -1,0 +1,12 @@
+.custom-navbar {
+    height: 3%; 
+  }  
+  .custom-navbar .navbar-brand, 
+  .custom-navbar .nav-link {
+    line-height: 3%;
+  }
+    /* .custom-navbar .navbar-toggler {
+    padding-top: 12px; 
+    padding-bottom: 12px; 
+  }
+   */

@@ -1,12 +1,12 @@
 <div class="container">
-  <h1 class="text-center display-3">Reads 📖</h1>
+  <h1 class="text-start display-3">Reads 📖</h1>
   <form (submit)="searchBooks()">
     <div class="input-group mb-3">
       <input type="text" class="form-control" [(ngModel)]="query" name="query" placeholder="Busque por livros e autores">
       <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
     </div>
   </form>
-  <div *ngIf="getFlagReload()" class="loading-icon text-center">
+  <div *ngIf="getFlagReload()" class="loading-icon text-center ">
     <i class="fas fa-spinner fa-spin"></i> Carregando...
   </div>
   <div *ngIf="books?.length! > 0" class="mb-3 text-start border-bottom pb-2">
