@@ -1,45 +1,41 @@
 <div class="container">
-    <style>
-        .custom-underline {
-          text-decoration: underline !important;
-        }
-      </style>
-    <h1>Lista de Livros</h1>
-    <form (submit)="searchBooks()">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" [(ngModel)]="query" name="query" placeholder="Busque por livros e autores">
-        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-      </div>
-    </form>
-    <div *ngIf="getFlagReload()" class="loading-icon">
-      <i class="fas fa-spinner fa-spin"></i> Carregando...
+  <h1 class="text-center display-3">Reads 📖</h1>
+  <form (submit)="searchBooks()">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="query" name="query" placeholder="Busque por livros e autores">
+      <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
     </div>
-    <div class="list-group">
-      <div class="list-group-item list-group-item-action mb-3" *ngFor="let book of books">
-        <div class="d-flex w-100">
-          <img *ngIf="book.volumeInfo.imageLinks" [src]="book.volumeInfo.imageLinks.thumbnail" class="img-fluid me-3" alt="Book Cover" style="max-height: 150px; width: auto;">
-          <div class="flex-grow-1">
-            <h5 class="mb-1 fw-bold">{{ book.volumeInfo.title }}</h5>
-            <small>{{ book.volumeInfo.authors?.join(', ') }}</small>
-            <p class="mb-1">{{ book.volumeInfo.description }}</p>
-            <div class="mt-2">
-                <button [routerLink]="['/book', book.id] "class="btn btn-outline-primary me-4">
-                <i class="fas fa-book-open"></i> Preview
-              </button>
-              <button *ngIf="!isFavorite(book?.id!)" (click)="addBook(book!)" class="btn btn-outline-secondary">
-                <i class="fas fa-star"></i> Adicionar aos Favoritos
-              </button>
-              <button *ngIf="isFavorite(book?.id!)" (click)="removeBook(book?.id!)" class="btn btn-outline-danger">
-                <i class="fas fa-times"></i> Remover dos Favoritos
-              </button>
-            </div>
+  </form>
+  <div *ngIf="getFlagReload()" class="loading-icon text-center">
+    <i class="fas fa-spinner fa-spin"></i> Carregando...
+  </div>
+  <div *ngIf="books?.length! > 0" class="mb-3 text-start border-bottom pb-2">
+    <h3 class="mb-0">Resultados encontrados</h3>
+  </div>
+  <div class="list-group">
+    <div class="list-group-item list-group-item-action mb-3" *ngFor="let book of books">
+      <div class="d-flex w-100 align-items-start">
+        <img *ngIf="book.volumeInfo.imageLinks" [src]="book.volumeInfo.imageLinks.thumbnail" class="img-fluid me-3" alt="Book Cover" style="max-height: 150px; width: auto;">
+        <div class="flex-grow-1">
+          <h5 class="mb-1 fw-bold">{{ book.volumeInfo.title }}</h5>
+          <small>{{ book.volumeInfo.authors?.join(', ') }}</small>
+          <p class="mb-1">{{ book.volumeInfo.description }}</p>
+          <div class="mt-2">
+            <button [routerLink]="['/book', book.id]" class="btn btn-outline-primary me-2">
+              <i class="fas fa-book-open"></i> Preview
+            </button>
+            <button *ngIf="!isFavorite(book?.id!)" (click)="addBook(book!)" class="btn btn-outline-secondary me-2">
+              <i class="fas fa-star"></i> Adicionar aos Favoritos
+            </button>
+            <button *ngIf="isFavorite(book?.id!)" (click)="removeBook(book?.id!)" class="btn btn-outline-danger">
+              <i class="fas fa-times"></i> Remover dos Favoritos
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div [hidden]="getFlagMyFavorites()" class="text-center my-3">
-        <a class="nav-link  custom-underline" href="/favorites">Meus favoritos</a>
-    </div>
- 
   </div>
-  
+  <div [hidden]="getFlagMyFavorites()" class="text-center my-3">
+    <a class="nav-link custom-underline" href="/favorites">Meus favoritos</a>
+  </div>
+</div>
