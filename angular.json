@@ -67,7 +67,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "hmr": true
+          },
           "configurations": {
+            
             "production": {
               "buildTarget": "coco-bambu-reads:build:production"
             },
