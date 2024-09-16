@@ -7,12 +7,13 @@ import { finalize } from 'rxjs/operators';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { FavoritesBookService } from '../../../app/services/favorites-book.service';
 import { FavoriteBook } from '../../../core/models/favoritesBook.model';
+import { FooterComponent } from '../../../core/footer/footer.component';
 
 
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule, FooterComponent],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })

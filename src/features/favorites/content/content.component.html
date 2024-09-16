@@ -18,12 +18,27 @@
               <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
                 <i class="fa fa-star" [class.selected]="i < book.rating" (click)="rateBook(book, i + 1)"></i>
               </ng-container>
-              <span>-{{ book.rating }}</span>
+              <span> - {{ book.rating }}</span>
             </div>
           </div>
           <div class="form-group mt-3">
-            <label for="notes">Anotações:</label>
-            <textarea [(ngModel)]="book.notes" id="notes" class="form-control" rows="3"></textarea>
+            <div class="form-group mt-3">
+              <label for="notes">Anotações:</label>
+              <div class="d-flex align-items-center">
+                <textarea [(ngModel)]="book.notes" id="notes" class="form-control" rows="3" [disabled]="!isEditingNotes[book.id]"></textarea>
+                <button class="btn btn-link btn-icon ms-2" (click)="toggleEditNotes(book.id)">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+              </div>
+            </div>
+            
+          <div class="form-group mt-3" >
+            <button *ngIf="isEditingNotes[book.id]"(click)="updateBook(book)" class="btn btn-outline-primary button-spacing">
+              <i class="fas fa-save"></i> Salvar Modificações
+            </button>
+            <button (click)="removeBook(book.id)" class="btn btn-outline-danger">
+              <i class="fas fa-times"></i> Remover dos Favoritos
+            </button>
           </div>
           <div class="form-group mt-3">
             <label for="tags">Tags:</label>
@@ -41,14 +56,6 @@
                 <i class="fas fa-check"></i>
               </button>
             </div>
-          </div>
-          <div class="form-group mt-3">
-            <button (click)="updateBook(book)" class="btn btn-outline-primary button-spacing">
-              <i class="fas fa-save"></i> Salvar Modificações
-            </button>
-            <button (click)="removeBook(book.id)" class="btn btn-outline-danger">
-              <i class="fas fa-times"></i> Remover dos Favoritos
-            </button>
           </div>
         </div>
       </div>

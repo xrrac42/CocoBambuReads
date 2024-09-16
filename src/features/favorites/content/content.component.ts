@@ -16,6 +16,7 @@ export class ContentComponent implements OnInit {
   selectedTag: string = '';
   newTags: { [bookId: string]: string } = {};
   isAddingTag: { [bookId: string]: boolean } = {};
+  isEditingNotes: { [bookId: string]: boolean } = {};
 
   constructor(private favoritesBookService: FavoritesBookService) {}
 
@@ -26,7 +27,8 @@ export class ContentComponent implements OnInit {
   loadFavoriteBooks(): void {
     this.favoriteBooks = this.favoritesBookService.getFavoritesBooks();
     this.favoriteBooks.forEach(book => {
-      this.isAddingTag[book.id] = false; 
+      this.isAddingTag[book.id] = false;
+      this.isEditingNotes[book.id] = false;
     });
   }
 
@@ -35,11 +37,13 @@ export class ContentComponent implements OnInit {
     this.favoriteBooks = this.favoritesBookService.getFavoritesBooks();
     this.favoriteBooks.forEach(book => {
       this.isAddingTag[book.id] = false;
+      this.isEditingNotes[book.id] = false;
     });
   }
 
   updateBook(book: FavoriteBook): void {
     this.favoritesBookService.updateFavoriteBook(book);
+    this.isEditingNotes[book.id] = false;
   }
 
   filterBooks(): void {
@@ -50,6 +54,7 @@ export class ContentComponent implements OnInit {
     }
     this.favoriteBooks.forEach(book => {
       this.isAddingTag[book.id] = false;
+      this.isEditingNotes[book.id] = false;
     });
   }
 
@@ -75,5 +80,9 @@ export class ContentComponent implements OnInit {
   rateBook(book: FavoriteBook, rating: number): void {
     book.rating = rating;
     this.updateBook(book);
+  }
+
+  toggleEditNotes(bookId: string): void {
+    this.isEditingNotes[bookId] = !this.isEditingNotes[bookId];
   }
 }
