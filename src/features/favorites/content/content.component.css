@@ -1,0 +1,52 @@
+.custom-underline {
+    text-decoration: underline !important;
+  }
+
+  .button-spacing {
+    margin-right: 1rem; 
+  }
+
+  .text-spacing {
+    margin-left: 1rem; 
+  }
+
+  .tag-chip {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    margin: 0.2rem;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  .tag-chip .close-btn {
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+
+  .add-tag-button {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    color: #007bff;
+    cursor: pointer;
+  }
+
+  .add-tag-input {
+    display: inline;
+    border: none;
+    outline: none;
+    background-color: #f8f9fa;
+    padding: 0.2rem;
+  }
+
+  .star-rating .fa-star {
+    cursor: pointer;
+    color: #ddd;
+    transition: color 0.3s;
+  }
+
+  .star-rating .fa-star.selected {
+    color: gold;
+  }

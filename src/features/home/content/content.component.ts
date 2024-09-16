@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs/operators';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { FavoritesBookService } from '../../../app/services/favorites-book.service';
+import { FavoriteBook } from '../../../core/models/favoritesBook.model';
 
 
 @Component({
@@ -15,7 +17,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
   styleUrl: './content.component.css'
 })
 export class ContentComponent implements OnInit { 
-  constructor(private bookService: BookService, @Inject(ActivatedRoute) private route: ActivatedRoute ) {
+  constructor(private bookService: BookService, private favoritesBookService: FavoritesBookService, @Inject(ActivatedRoute) private route: ActivatedRoute ) {
     this.route.paramMap.subscribe((params:any)=> {
       this.id = params.get('id');});
    }
@@ -55,5 +57,34 @@ export class ContentComponent implements OnInit {
         this.books = response.items;
       });
   }
+ 
+  addBook(book: Book): void {
+    if (book) {
+      const favoriteBook: FavoriteBook = {
+        id: book.id,
+        title: book.volumeInfo.title,
+        author: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : '',
+        description: book.volumeInfo.description || '',
+        genre: book.volumeInfo.categories ? book.volumeInfo.categories.join(', ') : '',
+        publicationYear: book.volumeInfo.publishedDate ? new Date(book.volumeInfo.publishedDate).getFullYear() : 0,
+        rating: 0, 
+        notes: '',
+        tags: [], 
+        imageLinks: book.volumeInfo.imageLinks ? { thumbnail: book.volumeInfo.imageLinks.thumbnail } : { thumbnail: '' }
+      };
+      // console.log('Add Livro:', favoriteBook);      
+      this.favoritesBookService.addFavoriteBook(favoriteBook);
+
+    }
+  }
+
+  removeBook(bookId: string): void {
+    this.favoritesBookService.removeFavoriteBook(bookId);
+  }
+
+  isFavorite(bookId: string): boolean {
+    return this.favoritesBookService.isFavorite(bookId);
+  }
+
 
 }

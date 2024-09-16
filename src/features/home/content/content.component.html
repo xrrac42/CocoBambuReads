@@ -26,8 +26,11 @@
                 <button [routerLink]="['/book', book.id] "class="btn btn-outline-primary me-4">
                 <i class="fas fa-book-open"></i> Preview
               </button>
-              <button class="btn btn-outline-secondary">
+              <button *ngIf="!isFavorite(book?.id!)" (click)="addBook(book!)" class="btn btn-outline-secondary">
                 <i class="fas fa-star"></i> Adicionar aos Favoritos
+              </button>
+              <button *ngIf="isFavorite(book?.id!)" (click)="removeBook(book?.id!)" class="btn btn-outline-danger">
+                <i class="fas fa-times"></i> Remover dos Favoritos
               </button>
             </div>
           </div>

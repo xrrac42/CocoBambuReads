@@ -1,25 +1,3 @@
-<style>
-    .book-cover-true {
-      width: 100%;
-      height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-     
-    }
-    .book-cover-false {
-      width: 100%;
-      height: 500px;
-      background-color: #dcdcdc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      color: #555;
-      border: 2px dashed #aaa;
-    }
-  </style>
-
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -30,22 +8,26 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <div *ngIf="book?.volumeInfo?.imageLinks"  class="book-cover-true">
+              <div *ngIf="book?.volumeInfo?.imageLinks" class="book-cover-true">
                 <img *ngIf="book?.volumeInfo?.imageLinks" [src]="book?.volumeInfo?.imageLinks?.thumbnail" class="img-fluid me-3" alt="Book Cover" style="height: 500px; width: auto;">
-                </div>
-                 <div *ngIf="!book?.volumeInfo?.imageLinks"  class="book-cover-false">
-                    Capa Indisponível 
-                 </div>
-                </div>
+              </div>
+              <div *ngIf="!book?.volumeInfo?.imageLinks" class="book-cover-false">
+                Capa Indisponível
+              </div>
+            </div>
             <div class="col-md-6">
               <h3>{{ book?.volumeInfo?.authors?.join(', ') }}</h3>
               <p class="mt-3">{{ book?.volumeInfo?.description }}</p>
               <p class="mt-3"><strong>Gênero:</strong> {{book?.volumeInfo?.categories }}</p>
               <p class="mt-3"><strong>Ano de Publicação:</strong> {{book?.volumeInfo?.publishedDate}}</p>
             </div>
-            <div class="mt-2">
-            <button class="btn btn-outline-secondary">
+          </div>
+          <div class="mt-2 text-center">
+            <button *ngIf="!isFavorite(book?.id!)" (click)="addBook(book!)" class="btn btn-outline-secondary">
               <i class="fas fa-star"></i> Adicionar aos Favoritos
+            </button>
+            <button *ngIf="isFavorite(book?.id!)" (click)="removeBook(book?.id!)" class="btn btn-outline-danger">
+              <i class="fas fa-times"></i> Remover dos Favoritos
             </button>
           </div>
         </div>
@@ -53,5 +35,4 @@
     </div>
   </div>
 </div>
-
 
