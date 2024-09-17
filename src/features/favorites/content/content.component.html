@@ -1,11 +1,23 @@
-<!-- Ajustar o HTML para o footer no componente de favoritos. -->
-<!-- Corrigir o search para buscar mais de uma tag. -->
 <div class="container">
   <h1>Meus Favoritos</h1>
   <div class="form-group">
-    <label for="tagFilter">Filtrar por tag:</label>
-    <input id="tagFilter" [(ngModel)]="selectedTag" (input)="filterBooks()" class="form-control" placeholder="Digite uma tag para filtrar">
+    <label for="tagFilter">Filtre as buscas por tags:</label>
+    <input id="tagFilter" [(ngModel)]="selectedTag" (keydown.enter)="addTagToFilter(selectedTag); selectedTag=''" class="form-control" placeholder="Pesquise por uma tag e pressione Enter">
   </div>
+  <div class="selected-tags">
+    <span *ngFor="let tag of selectedTags" class="tag-chip">
+      {{ tag }} <span class="close-btn" (click)="removeTagFromFilter(tag)">&times;</span>
+    </span>
+  </div>
+  
+  <div *ngIf="!hasFavoritesBooks()" class="alert alert-info">
+    Parece que você ainda não tem livros selecionados. <a href="#">Clique aqui para ser redirecionado para poder adicionar</a>.
+  </div>
+
+  <div *ngIf="favoriteBooks.length === 0 && hasFavoritesBooks() " class="alert alert-warning">
+    Nenhum resultado encontrado para as tags selecionadas.
+  </div>
+
   <div class="list-group">
     <div class="list-group-item list-group-item-action mb-3" *ngFor="let book of favoriteBooks">
       <div class="d-flex w-100">
@@ -24,18 +36,16 @@
             </div>
           </div>
           <div class="form-group mt-3">
-            <div class="form-group mt-3">
-              <label for="notes">Anotações:</label>
-              <div class="d-flex align-items-center">
-                <textarea [(ngModel)]="book.notes" id="notes" class="form-control" rows="3" [disabled]="!isEditingNotes[book.id]"></textarea>
-                <button class="btn btn-link btn-icon ms-2" (click)="toggleEditNotes(book.id)">
-                  <i class="fas fa-pencil-alt"></i>
-                </button>
-              </div>
+            <label for="notes">Anotações:</label>
+            <div class="d-flex align-items-center">
+              <textarea [(ngModel)]="book.notes" id="notes" class="form-control" rows="3" [disabled]="!isEditingNotes[book.id]"></textarea>
+              <button class="btn btn-link btn-icon ms-2" (click)="toggleEditNotes(book.id)">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
             </div>
-            
-          <div class="form-group mt-3" >
-            <button *ngIf="isEditingNotes[book.id]"(click)="updateBook(book)" class="btn btn-outline-primary button-spacing">
+          </div>
+          <div class="form-group mt-3">
+            <button *ngIf="isEditingNotes[book.id]" (click)="updateBook(book)" class="btn btn-outline-primary button-spacing">
               <i class="fas fa-save"></i> Salvar Modificações
             </button>
             <button (click)="removeBook(book.id)" class="btn btn-outline-danger">
@@ -49,8 +59,7 @@
                 {{ tag }}
                 <span class="close-btn" (click)="removeTag(book, tagIndex)">&times;</span>
               </div>
-              <a *ngIf="!isAddingTag[book.id]">Adicionar uma nova tag</a>
-              <button *ngIf="!isAddingTag[book.id]" (click)="setAddTag(book.id, true)" class="add-tag-button">
+                <button *ngIf="!isAddingTag[book.id]" (click)="setAddTag(book.id, true)" class="add-tag-button">
                 <i class="fas fa-plus"></i>
               </button>
               <input *ngIf="isAddingTag[book.id]" [(ngModel)]="newTags[book.id]" (keydown.enter)="saveTag(book)" class="add-tag-input" placeholder="Digite o nome da tag">

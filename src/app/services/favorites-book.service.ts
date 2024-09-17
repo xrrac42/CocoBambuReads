@@ -44,10 +44,11 @@ export class FavoritesBookService {
     }
   }
 
-  filterBooksByTag(tag: string): FavoriteBook[] {
+  filterBooksByTags(tags: string[]): FavoriteBook[] {
     this.loadFavoriteBooks(); 
-    return this.favoriteBooks.filter(book => book.tags.includes(tag));
+    return this.favoriteBooks.filter(book => tags.some(tag => book.tags.includes(tag)));
   }
+
   isFavorite(bookId: string): boolean {
     this.loadFavoriteBooks();
     return this.favoriteBooks.some(book => book.id === bookId);
