@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Meus Favoritos</h1>
-  <div class="form-group">
+  <div *ngIf="hasFavoritesBooks()" class="form-group">
     <label for="tagFilter">Filtre as buscas por tags:</label>
     <input id="tagFilter" [(ngModel)]="selectedTag" (keydown.enter)="addTagToFilter(selectedTag); selectedTag=''" class="form-control" placeholder="Pesquise por uma tag e pressione Enter">
   </div>

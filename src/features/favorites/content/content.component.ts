@@ -3,7 +3,6 @@ import { FavoriteBook } from '../../../core/models/favoritesBook.model';
 import { FavoritesBookService } from '../../../app/services/favorites-book.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { get } from 'http';
 
 @Component({
   selector: 'app-content',
