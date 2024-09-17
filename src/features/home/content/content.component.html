@@ -6,7 +6,7 @@
       <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
     </div>
   </form>
-  <div *ngIf="getFlagReload()" class="loading-icon text-center ">
+  <div  *ngIf="getFlagReload()" class="overlay">
     <i class="fas fa-spinner fa-spin"></i> Carregando...
   </div>
   <div *ngIf="books?.length! > 0" class="mb-3 text-start border-bottom pb-2">
@@ -35,7 +35,11 @@
       </div>
     </div>
   </div>
-  <div [hidden]="getFlagMyFavorites()" class="text-center my-3">
+  <div *ngIf="books.length === 0" class="text-center my-3">
     <a class="nav-link custom-underline" href="/favorites">Meus favoritos</a>
   </div>
+  <div *ngIf="books.length > 0" class="text-center my-3">
+    <button (click)="loadMore()" class="btn btn-outline-primary">Mostrar mais resultados</button>
+  </div>
+  
 </div>

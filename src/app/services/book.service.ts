@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from '../../core/models/book.model';
-import { BooksApiResponse } from '../../core/models/book.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +12,10 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  searchBooks(query: string): Observable<BooksApiResponse> {
-    const url = `${this.apiUrl}?q=${query}`;
-    return this.http.get<BooksApiResponse>(url);
-  }
-  getBookById(id: string): Observable<Book> {
+   searchBooks(query: string, startIndex: number, maxResults: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}`);
+   }
+    getBookById(id: string): Observable<Book> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Book>(url);
   }

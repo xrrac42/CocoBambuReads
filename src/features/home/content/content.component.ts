@@ -3,11 +3,13 @@ import { BookService } from '../../../app/services/book.service';
 import { Book } from '../../../core/models/book.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { finalize } from 'rxjs/operators';
+import { finalize, catchError, concatMap} from 'rxjs/operators';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { FavoritesBookService } from '../../../app/services/favorites-book.service';
 import { FavoriteBook } from '../../../core/models/favoritesBook.model';
 import { FooterComponent } from '../../../core/footer/footer.component';
+import { of } from 'rxjs';
+
 
 
 @Component({
@@ -28,6 +30,9 @@ export class ContentComponent implements OnInit {
   id: string | null = '';
   books: Book[] = [];
   query: string = '';
+  startIndex = 0;
+  maxResults = 10;
+  FlagLoad = false;
 
   flagReload: boolean = false;
   getFlagReload(){
@@ -48,16 +53,30 @@ export class ContentComponent implements OnInit {
     return this.flagMyFavorites;
   }
 
-
-  searchBooks(): void {
+  searchBooks() {
     this.setFlagReload(true);
+    this.bookService.searchBooks(this.query, this.startIndex, this.maxResults).pipe(
+      finalize(() => this.setFlagReload(false)),
+      catchError(err => {
+        console.error(err);
+        return of([]);
+      })
+    ).subscribe(response => {
+      this.books = response.items || [];
+    });
     this.setFlagMyFavorites(true);
-    this.bookService.searchBooks(this.query)
-      .pipe(finalize(() => this.setFlagReload(false)))
-      .subscribe(response => {
-        this.books = response.items;
-      });
+
   }
+
+  // searchBooks(): void {
+  //   this.setFlagReload(true);
+  //   this.setFlagMyFavorites(true);
+  //   this.bookService.searchBooks(this.query)
+  //     .pipe(finalize(() => this.setFlagReload(false)))
+  //     .subscribe(response => {
+  //       this.books = response.items;
+  //     });
+  // }
  
   addBook(book: Book): void {
     if (book) {
@@ -86,6 +105,22 @@ export class ContentComponent implements OnInit {
   isFavorite(bookId: string): boolean {
     return this.favoritesBookService.isFavorite(bookId);
   }
+  
 
+
+  loadMore() {
+    this.setFlagReload(true);
+    this.startIndex += this.maxResults;
+    this.bookService.searchBooks(this.query, this.startIndex, this.maxResults).pipe(
+      finalize(() => this.setFlagReload(false)),
+      catchError(err => {
+        console.error(err);
+        return of([]);
+      }),
+      concatMap(response => of(response.items))
+    ).subscribe(newBooks => {
+      this.books = [...this.books, ...newBooks];
+    });
+  }
 
 }
