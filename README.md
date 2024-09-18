@@ -186,6 +186,10 @@ Embora o projeto atual já ofereça um grande desafio, existem algumas funcional
 6. **Filtros e Ordenação Avançados**:
    - Adicionar opções avançadas de filtro e ordenação, permitindo que os usuários encontrem livros favoritos com mais facilidade com base em critérios como data de publicação, gênero, autor, etc.
 
+7. ** Persistência de Dados:
+
+A persistência de dados foi feita com Local Storage para facilitar para que a avaliação seja mais fácil, assim o usuário não precisa configurar um servidor, evitando conflitos. No entanto, para uma aplicação pequena, poderia ser utilizado o Firebase, mas poderia   apresentar problemas com a API key. Para uma aplicação maior, seria recomendável desenvolver um backend dedicado para gerenciar a persistência de dados de forma mais robusta e segura.
+
 ### Melhorias de Arquitetura
 
 Para garantir a escalabilidade e a manutenção do projeto, pode se usar arquitetura de microsserviços por conta da massividade dos dados que aplicação teria:
