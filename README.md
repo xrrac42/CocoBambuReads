@@ -51,6 +51,18 @@ CocoBambuReads é uma aplicação desenvolvida em Angular 18 para resolver o Des
 
 ## Imagens
 
+### Barra de Navegação
+
+A barra de navegação do CocoBambuReads é composta por dois itens principais: Home e Favorites.
+![image](https://github.com/user-attachments/assets/53b88ef7-f5c6-4c6d-923d-b84651496ebf)
+
+
+Home
+Ao clicar em Home, o usuário é redirecionado para a página principal da aplicação. Nesta página, é possível realizar buscas de livros.
+
+Favorites
+Ao clicar em Favorites, o usuário é direcionado para a página de favoritos, onde pode visualizar todos os livros que marcou como favoritos. Nesta página, é possível gerenciar esses livros, adicionando anotações, avaliações e tags personalizadas.
+
 ### Tela de Busca
 O usuário consegue buscar por livros ou autor.
 
