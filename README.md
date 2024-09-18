@@ -207,7 +207,9 @@ Para garantir a escalabilidade e a manutenção do projeto, pode se usar arquite
 2. **Desacoplamento de Serviços**:
    - Utilizar APIs RESTful para comunicação entre diferentes partes da aplicação, garantindo que cada serviço seja desacoplado e independente. Isso melhora a modularidade e facilita a substituição ou atualização de componentes individuais sem afetar o restante do sistema.
 
-Com essas melhorias arquiteturais e funcionais, o projeto pode evoluir significativamente, proporcionando uma experiência mais rica e robusta para os usuários, além de facilitar a escalabilidade e manutenção do sistema.## Contribuição
+Com essas melhorias arquiteturais e funcionais, o projeto pode evoluir significativamente, proporcionando uma experiência mais rica e robusta para os usuários, além de facilitar a escalabilidade e manutenção do sistema.
+
+## Contribuição
 
 Para contribuir com o projeto, siga estes passos:
 
