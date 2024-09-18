@@ -32,7 +32,14 @@ CocoBambuReads é uma aplicação desenvolvida em Angular 18 que permite aos usu
    ng serve
    ```
 
-   Navegue até `http://localhost:4200/`. A aplicação será recarregada automaticamente se você alterar qualquer arquivo fonte.
+   Navegue até `http://localhost:4200/`.
+
+4. **Script npm**
+
+   ```bash
+   npm run start
+   ```
+
 
 ## Funcionalidades
 
