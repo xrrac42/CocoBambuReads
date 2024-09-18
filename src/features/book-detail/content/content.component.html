@@ -26,6 +26,7 @@
             <button *ngIf="!isFavorite(book?.id!)" (click)="addBook(book!)" class="btn btn-outline-secondary">
               <i class="fas fa-star"></i> Adicionar aos Favoritos
             </button>
+            <button *ngIf="isFavorite(book?.id!)" [routerLink] ="['/favorites']" class="btn btn-outline-secondary" style="margin-left: 10px;">  <i class="fas fa-star"></i> Ver em favoritos</button>
             <button *ngIf="isFavorite(book?.id!)" (click)="removeBook(book?.id!)" class="btn btn-outline-danger">
               <i class="fas fa-times"></i> Remover dos Favoritos
             </button>

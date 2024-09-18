@@ -5,12 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FavoriteBook } from '../../../core/models/favoritesBook.model';
 import { FavoritesBookService } from '../../../app/services/favorites-book.service';
-
+import { RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })
@@ -20,7 +20,7 @@ export class ContentComponent implements OnInit {
   favoriteBooks: FavoriteBook[] = []; 
   
 
-  constructor(private bookService: BookService, private FavoritesBookService: FavoritesBookService ,  private route: ActivatedRoute) { }
+  constructor(private bookService: BookService, private FavoritesBookService: FavoritesBookService , private routerModule: RouterModule ,private route: ActivatedRoute) { }
   ngOnInit(): void {
     const bookId = this.route.snapshot.paramMap.get('id');
     if (bookId) {
