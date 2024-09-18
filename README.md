@@ -2,7 +2,7 @@
 
 ## Descrição
 
-CocoBambuReads é uma aplicação desenvolvida em Angular 18 que permite aos usuários explorar uma coleção de livros usando a API do Google Books. Os usuários podem buscar livros por título ou autor, favoritar livros, adicionar anotações, avaliações e tags, e filtrar seus favoritos por tags.
+CocoBambuReads é uma aplicação desenvolvida em Angular 18 para resolver o Desafio de Estágio do Coco Bambu 2024. A aplicação permite aos usuários explorar uma coleção de livros usando a API do Google Books. Os usuários podem buscar livros por título ou autor, favoritar livros, adicionar anotações, avaliações e tags, e filtrar seus favoritos por tags.
 
 ## Como Executar o Projeto
 
@@ -16,7 +16,7 @@ CocoBambuReads é uma aplicação desenvolvida em Angular 18 que permite aos usu
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/yourusername/CocoBambuReads.git
+   git clone https://github.com/xrrac42/CocoBambuReads.git
    cd CocoBambuReads
    ```
 
@@ -53,17 +53,20 @@ CocoBambuReads é uma aplicação desenvolvida em Angular 18 que permite aos usu
 
 ### Tela de Busca
 O usuário consegue buscar por livros ou autor.
-![Tela de Busca](https://github.com/user-attachments/assets/a4096170-c055-4ecf-8d6c-ea4da4a46d81)
 
-Lista de resultados.
-![Lista de Resultados](https://github.com/user-attachments/assets/2b15f92d-2506-475c-a93b-9c77b1d9d2cb)
+https://github.com/user-attachments/assets/91922253-c193-4ae8-9e97-90f623ada652
 
 ### Detalhes do Livro
 Ao clicar em preview o usuário consegue obter detalhes dos livros e adicionar aos favoritos.
-![Detalhes do Livro](https://github.com/user-attachments/assets/39d0b566-75cd-4d87-bdee-dc38c5b543b2)
+
+https://github.com/user-attachments/assets/6ad35ff3-caf0-4d7f-973e-91d6d084b9d9
+
 
 ### Lista de Favoritos
-![Lista de Favoritos](https://github.com/user-attachments/assets/aeb3a7a4-8543-411b-bac4-78fd804de972)
+
+
+https://github.com/user-attachments/assets/5c5946a2-5b6c-41fa-8a2a-dfca7617c023
+
 
 ### Anotações e Avaliações
 Ao clicar no lápis o usuário consegue criar uma nova anotação ou editar. Também consegue avaliar de 1 a 5 clicando na estrela correspondente.
@@ -91,26 +94,31 @@ Os seguintes operadores RxJS foram utilizados no projeto:
 - `switchMap`: Para lidar com mudanças de busca.
 - `catchError`: Para tratar erros durante a chamada da API.
 
-## Estrutura do Código
+## Estrutura do Projeto
 
-### Scaffolding
+O projeto está organizado em duas pastas principais: **core** e **features**.
 
-Use os seguintes comandos para gerar novos componentes, diretivas, pipes, serviços, classes, guards, interfaces, enums ou módulos:
+- **Core**: Contém o núcleo do projeto, incluindo serviços, cabeçalho (header) e rodapé (footer).
+- **Features**: Agrupa as telas da aplicação, divididas em componentes e conteúdo (content), que é a parte responsável pelo conteúdo específico de cada componente.
 
-```bash
-ng generate component component-name
-ng generate directive|pipe|service|class|guard|interface|enum|module
+```plaintext
+src/
+├── core/
+└── features/
 ```
 
-### Build
+Como melhoria, poderia criar uma outra pasta chamada **shared** onde estariam diretivas, pipes e módulos compartilhados:
 
-Para construir o projeto, execute:
-
-```bash
-ng build
+```plaintext
+src/
+├── core/
+├── features/
+└── shared/
+    ├── components/
+    ├── directives/
+    ├── pipes/
+    └── shared.module.ts
 ```
-
-Os artefatos de build serão armazenados no diretório `dist/`.
 
 ## Testes
 
@@ -131,10 +139,7 @@ Adicionei os seguintes scripts ao seu `package.json` para facilitar a execução
   "start": "ng serve",
   "build": "ng build",
   "test": "ng test",
-  "lint": "ng lint",
-  "e2e": "ng e2e",
-  "prepare": "husky install"
-}
+ }
 ```
 
 #### Como Executei os Testes
@@ -150,11 +155,20 @@ Para executar os testes unitários para o serviço `FavoritesBookService` no pro
 
 3. **Execução dos Testes**: 
    - Usei o comando `ng test` para iniciar o Karma, que abriu uma janela do navegador para executar os testes e exibir os resultados.
-   - Os resultados dos testes foram verificados tanto no terminal quanto no navegador, garantindo que todos os casos de teste passaram conforme esperado.
 
-### Melhorias Futuras
+### Critícas e Melhorias Futuras
 
-Embora o projeto atual já ofereça um grande desafio, existem algumas funcionalidades que poderiam ser implementadas para aumentar ainda mais suas capacidades:
+O projeto foi desafiador e me proporcionou um grande aprendizado, destacando-se pela sua funcionalidade e a usabilidade. As sugestões abaixo podem trazer melhorias incrementais e técnicas.
+
+
+### Sugestões de Melhorias incrementaais 
+Para futuras iterações, algumas funcionalidades adicionais podem ser consideradas sem aumentar demasiadamente a complexidade:
+
+1. **E-Reader**: Implementar um e-reader integrado, que permita aos usuários ler livros diretamente na aplicação. Isso pode incluir um modo de leitura confortável com opções de ajuste de fonte e tema.
+2. **Filtro de Luz Azul**: Adicionar um filtro de luz azul para leituras noturnas, melhorando a experiência do usuário ao ler por longos períodos.
+3. **Meta Crítica de Livros**: Desenvolver uma seção de meta crítica, onde usuários podem ver a média das avaliações de vários leitores e uma análise agregada de diferentes críticas.
+
+### Sugestões de Melhorias técnicas:
 
 1. **Autenticação e Autorização**:
    - Implementar um sistema de autenticação para que os usuários possam criar contas e salvar suas listas de livros favoritos de forma segura.
@@ -171,16 +185,14 @@ Embora o projeto atual já ofereça um grande desafio, existem algumas funcional
    - Implementar um sistema de recomendação de livros utilizando uma API de inteligência artificial, como a OpenAI GPT-3 ou a Amazon Personalize. 
    - Usar os dados dos livros favoritos do usuário para treinar o modelo e fornecer recomendações personalizadas.
 
-5. **Avaliações e Comentários**:
-   - Permitir que os usuários adicionem avaliações e comentários aos livros favoritos, compartilhando suas opiniões com outros usuários.
-   - Implementar um sistema de classificação para destacar os livros mais bem avaliados.
-
+5. ** Comentários**:
+   - Permitir que os usuários adicionem  comentários aos livros favoritos, compartilhando suas opiniões com outros usuários.
 6. **Filtros e Ordenação Avançados**:
    - Adicionar opções avançadas de filtro e ordenação, permitindo que os usuários encontrem livros favoritos com mais facilidade com base em critérios como data de publicação, gênero, autor, etc.
 
-7. ** Persistência de Dados:
+7. ** Persistência de Dados**:
 
-A persistência de dados foi feita com Local Storage para facilitar para que a avaliação seja mais fácil, assim o usuário não precisa configurar um servidor, evitando conflitos. No entanto, para uma aplicação pequena, poderia ser utilizado o Firebase, mas poderia   apresentar problemas com a API key. Para uma aplicação maior, seria recomendável desenvolver um backend dedicado para gerenciar a persistência de dados de forma mais robusta e segura.
+  - A persistência de dados foi feita com Local Storage para facilitar para que a avaliação seja mais fácil, assim o usuário não precisa configurar um servidor, evitando conflitos. No entanto, para uma aplicação pequena como essa, poderia ser utilizado o Firebase. Para uma aplicação maior, seria recomendável desenvolver um backend dedicado para gerenciar a persistência de dados de forma mais robusta e segura.
 
 ### Melhorias de Arquitetura
 
@@ -194,6 +206,7 @@ Para garantir a escalabilidade e a manutenção do projeto, pode se usar arquite
 
 Com essas melhorias arquiteturais e funcionais, o projeto pode evoluir significativamente, proporcionando uma experiência mais rica e robusta para os usuários, além de facilitar a escalabilidade e manutenção do sistema.
 
+
 ## Contribuição
 
 Para contribuir com o projeto, siga estes passos:
@@ -206,4 +219,4 @@ Para contribuir com o projeto, siga estes passos:
 
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE] para mais detalhes.
