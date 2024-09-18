@@ -8,8 +8,8 @@ CocoBambuReads é uma aplicação desenvolvida em Angular 18 para resolver o Des
 
 ### Pré-requisitos
 
-- Node.js
-- Angular CLI
+- Node.js (versão 20.17.0)
+- Angular CLI (versão 18.2.4)
 
 ### Passos para Execução
 
@@ -32,9 +32,9 @@ CocoBambuReads é uma aplicação desenvolvida em Angular 18 para resolver o Des
    ng serve
    ```
 
-   Navegue até `http://localhost:4200/`.
+   Navegue até `http://localhost:4200/` no seu navegador.
 
-4. **Script npm**
+4. **Script npm (opcional):**
 
    ```bash
    npm run start
