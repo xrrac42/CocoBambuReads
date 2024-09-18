@@ -122,20 +122,6 @@ Para executar os testes unitários via [Karma](https://karma-runner.github.io), 
 ng test
 ```
 
-### Testes de Serviço
-
-Testes unitários foram implementados para o serviço de busca de livros para garantir a integridade das chamadas à API e o tratamento adequado dos dados recebidos.
-
-### Testes End-to-End
-
-Para executar os testes end-to-end via uma plataforma de sua escolha, execute:
-
-```bash
-ng e2e
-```
-
-Nota: Para usar este comando, você precisa adicionar um pacote que implemente capacidades de teste end-to-end.
-
 ## Scripts npm
 
 Adicionei os seguintes scripts ao seu `package.json` para facilitar a execução de tarefas comuns:
@@ -153,7 +139,7 @@ Adicionei os seguintes scripts ao seu `package.json` para facilitar a execução
 
 #### Como Executei os Testes
 
-Para executar os testes unitários para os serviços `FavoritesBookService` e `BookService` no projeto Angular, segui os seguintes passos:
+Para executar os testes unitários para o serviço `FavoritesBookService` no projeto Angular, segui os seguintes passos:
 
 1. **Preparação do Ambiente**: 
    - Certifiquei-me de ter o Angular CLI instalado globalmente usando o comando `npm install -g @angular/cli`.
@@ -161,7 +147,6 @@ Para executar os testes unitários para os serviços `FavoritesBookService` e `B
 
 2. **Configuração dos Testes**: 
    - Adicionei testes unitários para `FavoritesBookService` usando o Jasmine e Karma.
-   - Configurei o Karma para exibir os resultados dos testes no terminal, ajustando o arquivo `karma.conf.js` para incluir o repórter `progress`.
 
 3. **Execução dos Testes**: 
    - Usei o comando `ng test` para iniciar o Karma, que abriu uma janela do navegador para executar os testes e exibir os resultados.
